@@ -10,16 +10,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val api = SkiMapService.getInstance()
-        val factory = UserViewModelFactory(api)
+
+        val factory = UserViewModelFactory(SkiMapService)
         val viewModel by viewModels<UserViewModel> { factory }
         viewModel.getProp().observe(this, { value ->
             val tv = this.findViewById<TextView>(R.id.test123)
             tv.text = value
         })
-        if (savedInstanceState == null){
-            viewModel.sayHello()
-        }
 
+        if (savedInstanceState == null) {
+            viewModel.askHello()
+        }
     }
 }
