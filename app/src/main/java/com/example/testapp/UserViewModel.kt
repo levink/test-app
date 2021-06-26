@@ -4,19 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.testapp.skimap.api.SkiMapInterface
+import com.example.testapp.skimap.model.HelloResponse
 import kotlinx.coroutines.launch
 
 class UserViewModel(
     private val api: SkiMapInterface,
-    private val prop: MutableLiveData<String> = MutableLiveData()
+    private val response: MutableLiveData<HelloResponse> = MutableLiveData()
 ) : ViewModel() {
 
-    fun getProp() : LiveData<String> = prop
+    fun getResponse() : LiveData<HelloResponse> = response
 
     fun askHello() {
         viewModelScope.launch {
-            val response = api.hello("LevinK")
-            prop.value = response
+            val value = api.hello("LevinK")
+            response.value = value
         }
     }
 }
