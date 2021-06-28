@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val textView: TextView by lazy { findViewById(R.id.test123) }
-        val progressBar: ProgressBar by lazy {findViewById(R.id.progressBar) }
+        val progressBar: ProgressBar by lazy { findViewById(R.id.progressBar) }
 
         val viewModel by viewModels<MainViewModel> { MainViewModelFactory(skiMapApi) }
         viewModel.getProgress().observe(this, {

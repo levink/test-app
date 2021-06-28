@@ -33,7 +33,7 @@ class SkiMapClient (
         }
     }
 
-    override suspend fun progress(block: (Int) -> Unit) {
+    override suspend fun longProgressCall(block: (Int) -> Unit) {
         withContext(Dispatchers.Default) {
             repeat(100) {
                 block(it)

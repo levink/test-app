@@ -4,5 +4,5 @@ import com.example.testapp.skimap.model.HelloResponse
 
 interface Api {
     suspend fun hello(username: String) : HelloResponse
-    suspend fun progress(block: (Int) -> Unit)
+    suspend fun longProgressCall(block: (Int) -> Unit)
 }

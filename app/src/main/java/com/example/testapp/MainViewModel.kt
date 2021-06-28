@@ -22,8 +22,8 @@ class MainViewModel(
         viewModelScope.launch {
 
             val work1 = async {
-                api.progress { progressValue ->
-                    progress.postValue(progressValue)
+                api.longProgressCall {
+                    progress.postValue(it)
                 }
             }
 
