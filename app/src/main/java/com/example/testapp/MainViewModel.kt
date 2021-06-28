@@ -8,7 +8,7 @@ import com.example.testapp.skimap.api.SkiMapInterface
 import com.example.testapp.skimap.model.HelloResponse
 import kotlinx.coroutines.*
 
-class UserViewModel(
+class MainViewModel(
     private val api: SkiMapInterface,
     private val progress: MutableLiveData<Int> = MutableLiveData(),
     private val response: MutableLiveData<HelloResponse> = MutableLiveData()
