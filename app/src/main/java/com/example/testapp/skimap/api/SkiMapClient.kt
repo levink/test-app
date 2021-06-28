@@ -6,22 +6,23 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 
-class SkiMapViewModel : ViewModel(), SkiMapProvider {
+class SkiMapClient : ViewModel(), SkiMapProvider {
 
     private val baseUrl = "https://snowrider.pro:1305/skimap/"
 
-    private val client : HttpClient by lazy {
-        HttpClient(CIO) {
+    private val client : HttpClient by lazy { createClient() }
+
+    private val api : SkiMapApi by lazy { SkiMapApi(baseUrl, client) }
+
+    private fun createClient(): HttpClient {
+        return HttpClient(CIO) {
             install(JsonFeature) {
                 serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
                     ignoreUnknownKeys = true
                 })
             }
         }
-
     }
-
-    private val api : SkiMapApi by lazy { SkiMapApi(baseUrl, client) }
 
     override fun getApi(): SkiMapInterface {
         return api

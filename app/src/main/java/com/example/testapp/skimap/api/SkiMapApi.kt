@@ -5,8 +5,8 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
-import io.ktor.http.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 class SkiMapApi (
@@ -30,6 +30,16 @@ class SkiMapApi (
     override suspend fun hello(username: String) : HelloResponse {
         return get("Hello") {
             parameter("username", username)
+        }
+    }
+
+    override suspend fun progress(block: (Int) -> Unit) {
+        withContext(Dispatchers.Default) {
+            repeat(100) {
+                block(it)
+                delay(25)
+            }
+            block(100)
         }
     }
 }

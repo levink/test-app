@@ -1,33 +1,33 @@
 package com.example.testapp
 
 import android.os.Bundle
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.testapp.skimap.api.SkiMapViewModel
+import com.example.testapp.skimap.api.SkiMapClient
 
 class MainActivity : AppCompatActivity() {
+
+    private val skiMapApi by viewModels<SkiMapClient>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val viewModel = getUserViewModel()
         val textView: TextView by lazy { findViewById(R.id.test123) }
-        viewModel.getResponse().observe(this, { helloResponse ->
-            textView.text = helloResponse.Message
+        val progressBar: ProgressBar by lazy {findViewById(R.id.progressBar) }
+
+        val viewModel by viewModels<UserViewModel> { UserViewModelFactory(skiMapApi) }
+        viewModel.getProgress().observe(this, {
+            progressBar.progress = it
+        })
+        viewModel.getResponse().observe(this, {
+            textView.text = it.Message
         })
 
         if (savedInstanceState == null) {
             viewModel.askHello()
         }
-    }
-
-    private fun getUserViewModel() : UserViewModel {
-        val skiMap by viewModels<SkiMapViewModel>()
-        val viewModel by viewModels<UserViewModel> {
-            UserViewModelFactory(skiMap)
-        }
-        return viewModel
     }
 }
