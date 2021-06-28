@@ -5,11 +5,11 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.testapp.skimap.api.SkiMapClient
+import com.example.testapp.skimap.api.SkiMapViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val skiMapApi by viewModels<SkiMapClient>()
+    private val skiMapApi by viewModels<SkiMapViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

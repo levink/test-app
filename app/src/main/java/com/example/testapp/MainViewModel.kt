@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.testapp.skimap.api.SkiMapInterface
+import com.example.testapp.skimap.api.Api
 import com.example.testapp.skimap.model.HelloResponse
 import kotlinx.coroutines.*
 
 class MainViewModel(
-    private val api: SkiMapInterface,
+    private val api: Api,
     private val progress: MutableLiveData<Int> = MutableLiveData(),
     private val response: MutableLiveData<HelloResponse> = MutableLiveData()
 ) : ViewModel() {

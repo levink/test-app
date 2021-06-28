@@ -1,35 +1,45 @@
 package com.example.testapp.skimap.api
 
-import androidx.lifecycle.ViewModel
+import com.example.testapp.skimap.model.HelloResponse
 import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
+import io.ktor.client.call.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
-class SkiMapClient : ViewModel(), SkiMapProvider {
+class SkiMapClient (
+    private val endpoint: String,
+    private val httpClient: HttpClient,
+) : Api {
 
-    private val baseUrl = "https://snowrider.pro:1305/skimap/"
-
-    private val client : HttpClient by lazy { createClient() }
-
-    private val api : SkiMapApi by lazy { SkiMapApi(baseUrl, client) }
-
-    private fun createClient(): HttpClient {
-        return HttpClient(CIO) {
-            install(JsonFeature) {
-                serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
-                    ignoreUnknownKeys = true
-                })
+    private suspend inline fun <reified T> get(
+        operation: String,
+        crossinline block: HttpRequestBuilder.() -> Unit = {}
+    ): T {
+        return withContext(Dispatchers.IO) {
+            val url = "${endpoint}${operation}"
+            val response: HttpResponse = httpClient.get(url) {
+                block()
             }
+            response.receive()
         }
     }
 
-    override fun getApi(): SkiMapInterface {
-        return api
+    override suspend fun hello(username: String) : HelloResponse {
+        return get("Hello") {
+            parameter("username", username)
+        }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        client.close()
+    override suspend fun progress(block: (Int) -> Unit) {
+        withContext(Dispatchers.Default) {
+            repeat(100) {
+                block(it)
+                delay(25)
+            }
+            block(100)
+        }
     }
 }
