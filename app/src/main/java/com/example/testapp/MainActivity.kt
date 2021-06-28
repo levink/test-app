@@ -5,11 +5,11 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.testapp.skimap.api.SkiMapViewModel
+import com.example.network.api.Provider
 
 class MainActivity : AppCompatActivity() {
 
-    private val skiMapApi by viewModels<SkiMapViewModel>()
+    private val clientProvider by viewModels<Provider>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         val textView: TextView by lazy { findViewById(R.id.test123) }
         val progressBar: ProgressBar by lazy { findViewById(R.id.progressBar) }
 
-        val viewModel by viewModels<MainViewModel> { MainViewModelFactory(skiMapApi) }
+        val viewModel by viewModels<MainViewModel> { MainViewModelFactory(clientProvider) }
         viewModel.getProgress().observe(this, {
             progressBar.progress = it
         })

@@ -1,4 +1,4 @@
-package com.example.testapp.skimap.api
+package com.example.network.api
 
 import androidx.lifecycle.ViewModel
 import io.ktor.client.*
@@ -6,13 +6,13 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 
-class SkiMapViewModel : ViewModel(), ApiProvider {
+class Provider : ViewModel() {
 
     private val baseUrl = "https://snowrider.pro:1305/skimap/"
 
     private val client : HttpClient by lazy { createClient() }
 
-    private val api : SkiMapClient by lazy { SkiMapClient(baseUrl, client) }
+    private val api : Client by lazy { Client(baseUrl, client) }
 
     private fun createClient(): HttpClient {
         return HttpClient(CIO) {
@@ -24,7 +24,7 @@ class SkiMapViewModel : ViewModel(), ApiProvider {
         }
     }
 
-    override fun getApi(): Api {
+    fun getApi(): Api {
         return api
     }
 

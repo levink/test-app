@@ -1,4 +1,4 @@
-package com.example.testapp.skimap.model
+package com.example.network.model
 
 import kotlinx.serialization.Serializable
 

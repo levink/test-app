@@ -1,6 +1,6 @@
-package com.example.testapp.skimap.api
+package com.example.network.api
 
-import com.example.testapp.skimap.model.HelloResponse
+import com.example.network.model.HelloResponse
 
 interface Api {
     suspend fun hello(username: String) : HelloResponse

@@ -1,6 +1,6 @@
-package com.example.testapp.skimap.api
+package com.example.network.api
 
-import com.example.testapp.skimap.model.HelloResponse
+import com.example.network.model.HelloResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-class SkiMapClient (
+class Client (
     private val endpoint: String,
     private val httpClient: HttpClient,
 ) : Api {

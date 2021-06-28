@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.testapp.skimap.api.Api
-import com.example.testapp.skimap.model.HelloResponse
+import com.example.network.api.Api
+import com.example.network.model.HelloResponse
 import kotlinx.coroutines.*
 
 class MainViewModel(
