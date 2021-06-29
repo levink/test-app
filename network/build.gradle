@@ -3,20 +3,17 @@ plugins {
     id 'kotlin-android'
     id 'kotlinx-serialization'
 }
+
 android {
-
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
-
+    compileSdkVersion compile_sdk
+    buildToolsVersion build_tools
     java {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = java_version
+        targetCompatibility = java_version
     }
-
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = jvm_target
     }
-
 }
 
 dependencies {

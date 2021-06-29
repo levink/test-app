@@ -1,31 +1,17 @@
 package com.example.network.api
 
+import com.example.network.util.BaseApiClient
 import com.example.network.model.HelloResponse
 import io.ktor.client.*
-import io.ktor.client.call.*
 import io.ktor.client.request.*
-import io.ktor.client.statement.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 class Client (
-    private val endpoint: String,
-    private val httpClient: HttpClient,
-) : Api {
-
-    private suspend inline fun <reified T> get(
-        operation: String,
-        crossinline block: HttpRequestBuilder.() -> Unit = {}
-    ): T {
-        return withContext(Dispatchers.IO) {
-            val url = "${endpoint}${operation}"
-            val response: HttpResponse = httpClient.get(url) {
-                block()
-            }
-            response.receive()
-        }
-    }
+    endpoint: String,
+    httpClient: HttpClient,
+) : BaseApiClient(endpoint, httpClient), Api {
 
     override suspend fun hello(username: String) : HelloResponse {
         return get("Hello") {
