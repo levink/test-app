@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getResponse().observe(this, {
             viewBinding.textView.text = it.Message
         })
+
         if (savedInstanceState == null) {
             viewModel.askHello()
         }

@@ -1,10 +1,10 @@
 package com.example.testapp
 
-import android.app.Activity
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
-class MainViewBinding(activity: Activity) {
-    val textView: TextView          = activity.findViewById(R.id.test123)
+class MainViewBinding(activity: AppCompatActivity) {
+    val textView: TextView          = activity.findViewById(R.id.textView)
     val progressBar: ProgressBar    = activity.findViewById(R.id.progressBar)
 }
