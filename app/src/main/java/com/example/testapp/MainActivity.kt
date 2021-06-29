@@ -13,13 +13,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val viewBinding = MainViewBinding(this)
+        val binding = MainViewBinding(this)
         val viewModel by viewModels<MainViewModel> { MainViewModelFactory(clientProvider) }
         viewModel.getProgress().observe(this, {
-            viewBinding.progressBar.progress = it
+            binding.progressBar.progress = it
         })
         viewModel.getResponse().observe(this, {
-            viewBinding.textView.text = it.Message
+            binding.textView.text = it.Message
         })
 
         if (savedInstanceState == null) {
