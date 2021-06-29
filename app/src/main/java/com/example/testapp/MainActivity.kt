@@ -3,11 +3,11 @@ package com.example.testapp
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.network.api.Provider
+import com.example.network.api.ApiProvider
 
 class MainActivity : AppCompatActivity() {
 
-    private val clientProvider by viewModels<Provider>()
+    private val clientProvider by viewModels<ApiProvider>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

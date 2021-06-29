@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-class Client (
+class ApiClient (
     endpoint: String,
     httpClient: HttpClient,
 ) : BaseApiClient(endpoint, httpClient), Api {

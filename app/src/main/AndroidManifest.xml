@@ -18,21 +18,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter android:label="intent_one">
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
-                    android:host="snowrider.pro"
-                    android:pathPrefix="/test"  />
-            </intent-filter>
-            <intent-filter android:label="intent_two">
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="app"
-                    android:host="snowrider"  />
-            </intent-filter>
         </activity>
     </application>
 

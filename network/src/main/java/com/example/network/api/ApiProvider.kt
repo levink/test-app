@@ -6,13 +6,13 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 
-class Provider : ViewModel() {
+class ApiProvider : ViewModel() {
 
     private val baseUrl = "https://snowrider.pro:1305/skimap/"
 
     private val client : HttpClient by lazy { createClient() }
 
-    private val api : Client by lazy { Client(baseUrl, client) }
+    private val api : ApiClient by lazy { ApiClient(baseUrl, client) }
 
     private fun createClient(): HttpClient {
         return HttpClient(CIO) {

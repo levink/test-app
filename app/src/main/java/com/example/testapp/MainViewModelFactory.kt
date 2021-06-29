@@ -2,10 +2,10 @@ package com.example.testapp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.network.api.Provider
+import com.example.network.api.ApiProvider
 
 class MainViewModelFactory (
-    private val apiProvider: Provider
+    private val apiProvider: ApiProvider
 ): ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
