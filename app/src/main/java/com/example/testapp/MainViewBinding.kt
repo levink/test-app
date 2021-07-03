@@ -3,8 +3,12 @@ package com.example.testapp
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.testapp.base.ViewBinding
 
-class MainViewBinding(activity: AppCompatActivity) {
-    val textView: TextView          = activity.findViewById(R.id.textView)
-    val progressBar: ProgressBar    = activity.findViewById(R.id.progressBar)
+class MainViewBinding(activity: AppCompatActivity) : ViewBinding(activity) {
+    val textView: TextView = activity.findViewById(R.id.textView)
+        get() = ifReady { field }
+
+    val progressBar: ProgressBar = activity.findViewById(R.id.progressBar)
+        get() = ifReady { field }
 }

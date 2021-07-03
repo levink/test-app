@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.network.api.ApiClientViewModel
-import com.example.testapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,8 +11,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
+        val binding = MainViewBinding(this)
 
         val viewModel by viewModels<MainViewModel> { MainViewModelFactory(clientProvider) }
         viewModel.getProgress().observe(this, {

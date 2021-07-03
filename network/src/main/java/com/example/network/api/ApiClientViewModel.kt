@@ -9,11 +9,11 @@ import io.ktor.client.features.json.serializer.*
 
 class ApiClientViewModel : ViewModel(), ApiProvider {
 
-    private val client : HttpClient by lazy { createClient() }
+    private val httpClient : HttpClient by lazy { createHttpClient() }
 
-    private val api : ApiClient by lazy { ApiClient(BuildConfig.BASE_URL, client) }
+    private val apiClient : Api by lazy { createApiClient() }
 
-    private fun createClient(): HttpClient {
+    private fun createHttpClient(): HttpClient {
         return HttpClient(CIO) {
             install(JsonFeature) {
                 serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
@@ -23,12 +23,16 @@ class ApiClientViewModel : ViewModel(), ApiProvider {
         }
     }
 
+    private fun createApiClient() : Api {
+       return ApiClient(BuildConfig.BASE_URL, httpClient)
+    }
+
     override fun getApi(): Api {
-        return api
+        return apiClient
     }
 
     override fun onCleared() {
         super.onCleared()
-        client.close()
+        httpClient.close()
     }
 }

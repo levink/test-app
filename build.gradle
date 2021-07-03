@@ -1,7 +1,5 @@
 buildscript {
     ext {
-        kotlin_version  = '1.5.20'
-        ktor_version    = '1.6.1'
         build_tools     = '30.0.3'
         jvm_target      = '1.8'
         java_version    = JavaVersion.VERSION_1_8
@@ -15,8 +13,8 @@ buildscript {
         mavenCentral()
         dependencies {
             classpath "com.android.tools.build:gradle:4.2.2"
-            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-            classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20"
+            classpath "org.jetbrains.kotlin:kotlin-serialization:1.5.20"
         }
     }
 }
