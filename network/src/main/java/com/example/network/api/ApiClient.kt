@@ -1,6 +1,6 @@
 package com.example.network.api
 
-import com.example.network.util.BaseApiClient
+import com.example.network.base.BaseHttpClient
 import com.example.network.model.HelloResponse
 import io.ktor.client.*
 import io.ktor.client.request.*
@@ -11,7 +11,7 @@ import kotlinx.coroutines.withContext
 class ApiClient (
     endpoint: String,
     httpClient: HttpClient,
-) : BaseApiClient(endpoint, httpClient), Api {
+) : BaseHttpClient(endpoint, httpClient), Api {
 
     override suspend fun hello(username: String) : HelloResponse {
         return get("Hello") {

@@ -3,17 +3,18 @@ package com.example.testapp
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.network.api.ApiProvider
+import com.example.network.api.ApiClientViewModel
+import com.example.testapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private val clientProvider by viewModels<ApiProvider>()
+    private val clientProvider by viewModels<ApiClientViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val binding = MainViewBinding(this)
         val viewModel by viewModels<MainViewModel> { MainViewModelFactory(clientProvider) }
         viewModel.getProgress().observe(this, {
             binding.progressBar.progress = it

@@ -1,4 +1,4 @@
-package com.example.network.util
+package com.example.network.base
 
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -7,10 +7,10 @@ import io.ktor.client.statement.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-open class BaseApiClient (
+open class BaseHttpClient (
     val endpoint: String,
     val httpClient: HttpClient
-){
+) {
 
     suspend inline fun <reified T> get(
         operation: String,
