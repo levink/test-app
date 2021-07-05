@@ -11,14 +11,19 @@ class ViewBindingObserver(lifecycleOwner: LifecycleOwner) : LifecycleObserver {
     init {
         lifecycleOwner.lifecycle.addObserver(this)
     }
+
+    @Suppress("unused")
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreateLifecycle() {
         ready = true
     }
+
+    @Suppress("unused")
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroyLifecycle() {
         ready = false
     }
+
     @UiThread
     internal inline fun <T>ifReady(block: () -> T) : T {
         if (ready)

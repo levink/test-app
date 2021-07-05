@@ -11,7 +11,6 @@ open class BaseHttpClient (
     val endpoint: String,
     val httpClient: HttpClient
 ) {
-
     suspend inline fun <reified T> get(
         operation: String,
         crossinline block: HttpRequestBuilder.() -> Unit = {}

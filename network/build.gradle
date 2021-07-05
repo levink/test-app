@@ -14,11 +14,6 @@ android {
     kotlinOptions {
         jvmTarget = jvm_target
     }
-    buildTypes {
-        debug {
-            buildConfigField "String", "BASE_URL", "\"https://snowrider.pro:1305/skimap/\""
-        }
-    }
 }
 
 dependencies {
