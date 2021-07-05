@@ -3,9 +3,8 @@ package com.example.testapp
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.network.api.ApiClient
-import com.example.network.base.HttpClientFactory
-import com.example.network.base.HttpClientViewModel
+import com.example.network.HttpClientFactory
+import com.example.network.HttpClientViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val binding = MainViewBinding(this)
-        val httpClient by viewModels<HttpClientViewModel> { HttpClientFactory() }
+        val httpClient by viewModels<HttpClientViewModel> { HttpClientFactory(BuildConfig.BASE_URL) }
         val viewModel by viewModels<MainViewModel> { MainViewModelFactory(httpClient) }
 
         viewModel.getProgress().observe(this, {

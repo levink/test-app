@@ -1,4 +1,4 @@
-package com.example.network.base
+package com.example.network
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -7,12 +7,14 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 
-class HttpClientFactory: ViewModelProvider.Factory {
+class HttpClientFactory(
+    private val endpoint: String
+): ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass == HttpClientViewModel::class.java) {
             @Suppress("UNCHECKED_CAST")
-            return HttpClientViewModel(createClient()) as T
+            return HttpClientViewModel(endpoint, createClient()) as T
         }
         throw IllegalArgumentException("Bad ViewModel class")
     }

@@ -1,6 +1,6 @@
 package com.example.network.api
 
-import com.example.network.base.BaseHttpClient
+import com.example.network.BaseHttpClient
 import com.example.network.model.HelloResponse
 import io.ktor.client.*
 import io.ktor.client.request.*

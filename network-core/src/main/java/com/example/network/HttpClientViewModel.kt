@@ -1,16 +1,18 @@
-package com.example.network.base
+package com.example.network
 
 import androidx.lifecycle.ViewModel
 import io.ktor.client.*
 
 class HttpClientViewModel(
+    private val endpoint: String,
     private val httpClient: HttpClient
 ): ViewModel(), HttpClientProvider {
-    override fun get(): HttpClient {
-        return httpClient
-    }
     override fun onCleared() {
         super.onCleared()
         httpClient.close()
     }
+
+    override fun endpoint(): String  = endpoint
+
+    override fun client(): HttpClient = httpClient
 }
