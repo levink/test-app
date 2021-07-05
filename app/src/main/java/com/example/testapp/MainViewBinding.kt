@@ -3,7 +3,7 @@ package com.example.testapp
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.testapp.base.ViewBinding
+import com.example.ui.ViewBinding
 
 class MainViewBinding(activity: AppCompatActivity) : ViewBinding(activity) {
     val textView: TextView = activity.findViewById(R.id.textView)

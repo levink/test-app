@@ -27,5 +27,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             viewModel.askHello()
         }
+
+
     }
 }

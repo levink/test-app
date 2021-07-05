@@ -2,3 +2,4 @@ rootProject.name = "TestApp"
 include ':app'
 include ':network-core'
 include ':network'
+include ':ui'

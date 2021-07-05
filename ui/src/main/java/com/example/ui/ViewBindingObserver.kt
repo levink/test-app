@@ -1,4 +1,4 @@
-package com.example.testapp.base
+package com.example.ui
 
 import androidx.annotation.UiThread
 import androidx.lifecycle.Lifecycle
