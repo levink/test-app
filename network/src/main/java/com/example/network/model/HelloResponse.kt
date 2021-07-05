@@ -4,8 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class HelloResponse (
-    val Message: String,
-    val ResultCode: Long,
-    val BuildMajor: Long,
-    val BuildMinor: Long
+    val Message: String = "",
+    val ResultCode: Long = 0,
+    val BuildMajor: Long = 0,
+    val BuildMinor: Long = 0
 )
