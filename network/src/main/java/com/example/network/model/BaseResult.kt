@@ -1,10 +1,14 @@
 package com.example.network.model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-abstract class BaseResult {
-    abstract var ResultCode: Int
-    abstract var Message: String?
+open class BaseResult {
+    @SerialName("ResultCode")
+    var resultCode: ResultCode = ResultCode.Ok
+
+    @SerialName("Message")
+    var message: String? = null
 }
 

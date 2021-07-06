@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.network.core.HttpClientFactory
 import com.example.network.core.HttpClientViewModel
+import com.example.network.model.ResultCode
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,10 +22,10 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.getResponse().observe(this, {
-            if (it.ResultCode == 0)
-                binding.textView.text = it.Message
-            else
-                binding.textView.text = "Error"
+            binding.textView.text = when (it.resultCode) {
+                ResultCode.Ok -> it.message
+                else -> "Error: ${it.message}"
+            }
         })
 
         if (savedInstanceState == null) {

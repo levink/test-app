@@ -1,6 +1,7 @@
 package com.example.network.core
 
 import com.example.network.model.BaseResult
+import com.example.network.model.ResultCode
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.features.*
@@ -23,26 +24,26 @@ open class BaseHttpClient (
             response.receive()
         }
         catch (exception: ResponseException) {
-            errorResult(exception)
+            httpErrorResult(exception)
         }
         catch (throwable: Throwable) {
-            errorResult(throwable)
+            exceptionResult(throwable)
         }
     }
 
-    inline fun <reified T : BaseResult> errorResult(exception: ResponseException) : T {
+    inline fun <reified T : BaseResult> httpErrorResult(exception: ResponseException) : T {
         val result = T::class.java.newInstance() as BaseResult
         val status = exception.response.status
-        result.ResultCode = status.value
-        result.Message = status.description
+        result.resultCode = ResultCode.HttpError
+        result.message = "HttpStatus = ${status.value}. ${status.description}"
         return result as T
     }
 
-    inline fun <reified T : BaseResult> errorResult(throwable: Throwable) : T {
+    inline fun <reified T : BaseResult> exceptionResult(throwable: Throwable) : T {
         throwable.printStackTrace()
         val result = T::class.java.newInstance() as BaseResult
-        result.ResultCode = 100500
-        result.Message = throwable.message ?: "Internal error"
+        result.resultCode = ResultCode.Exception
+        result.message = throwable.message ?: "Internal error"
         return result as T
     }
 
