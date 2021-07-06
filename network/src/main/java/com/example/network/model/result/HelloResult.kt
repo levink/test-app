@@ -1,5 +1,6 @@
-package com.example.network.model
+package com.example.network.model.result
 
+import com.example.network.model.base.BaseResult
 import kotlinx.serialization.Serializable
 
 @Serializable

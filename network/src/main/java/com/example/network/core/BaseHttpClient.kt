@@ -1,7 +1,7 @@
 package com.example.network.core
 
-import com.example.network.model.BaseResult
-import com.example.network.model.ResultCode
+import com.example.network.model.base.BaseResult
+import com.example.network.model.base.ResultCode
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.features.*

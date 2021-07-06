@@ -1,4 +1,4 @@
-package com.example.network.model
+package com.example.network.model.base
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -11,4 +11,3 @@ open class BaseResult {
     @SerialName("Message")
     var message: String? = null
 }
-

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.network.api.Api
-import com.example.network.model.HelloResult
+import com.example.network.model.result.HelloResult
 import kotlinx.coroutines.*
 
 class MainViewModel(
@@ -22,7 +22,7 @@ class MainViewModel(
         viewModelScope.launch {
 
             val work1 = async(Dispatchers.Default) {
-                api.longProgressCall {
+                api.longOperationWithProgress {
                     progress.postValue(it)
                 }
             }

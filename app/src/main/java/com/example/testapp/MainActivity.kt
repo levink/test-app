@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.network.core.HttpClientFactory
 import com.example.network.core.HttpClientViewModel
-import com.example.network.model.ResultCode
+import com.example.network.model.base.ResultCode
 
 class MainActivity : AppCompatActivity() {
 
