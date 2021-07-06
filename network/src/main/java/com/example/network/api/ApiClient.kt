@@ -1,31 +1,27 @@
 package com.example.network.api
 
-import com.example.network.BaseHttpClient
-import com.example.network.model.HelloResponse
+import com.example.network.core.BaseHttpClient
+import com.example.network.model.HelloResult
 import io.ktor.client.*
 import io.ktor.client.request.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
 
 class ApiClient (
     endpoint: String,
     httpClient: HttpClient,
 ) : BaseHttpClient(endpoint, httpClient), Api {
 
-    override suspend fun hello(username: String) : HelloResponse {
+    override suspend fun hello(username: String): HelloResult {
         return get("Hello") {
             parameter("username", username)
         }
     }
 
     override suspend fun longProgressCall(block: (Int) -> Unit) {
-        withContext(Dispatchers.Default) {
-            repeat(100) {
-                block(it)
-                delay(25)
-            }
-            block(100)
+        repeat(100) {
+            block(it)
+            delay(25)
         }
+        block(100)
     }
 }

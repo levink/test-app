@@ -3,8 +3,8 @@ package com.example.testapp
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.network.HttpClientFactory
-import com.example.network.HttpClientViewModel
+import com.example.network.core.HttpClientFactory
+import com.example.network.core.HttpClientViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +21,10 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.getResponse().observe(this, {
-            binding.textView.text = it.Message
+            if (it.ResultCode == 0)
+                binding.textView.text = it.Message
+            else
+                binding.textView.text = "Error"
         })
 
         if (savedInstanceState == null) {

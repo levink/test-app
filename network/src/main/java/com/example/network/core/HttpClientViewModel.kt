@@ -1,4 +1,4 @@
-package com.example.network
+package com.example.network.core
 
 import androidx.lifecycle.ViewModel
 import io.ktor.client.*

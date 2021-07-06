@@ -46,6 +46,5 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation "io.ktor:ktor-client-core:1.6.1"
     implementation project(path: ':network')
-    implementation project(path: ':network-core')
     implementation project(path: ':ui')
 }
