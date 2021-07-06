@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-open class BaseResult {
+open class BaseResponse {
     @SerialName("ResultCode")
     var resultCode: ResultCode = ResultCode.Ok
 

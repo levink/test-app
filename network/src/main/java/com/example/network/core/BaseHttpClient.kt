@@ -1,22 +1,24 @@
 package com.example.network.core
 
-import com.example.network.model.base.BaseResult
+import com.example.network.model.base.BaseResponse
 import com.example.network.model.base.ResultCode
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.client.utils.*
+import io.ktor.http.*
 
 open class BaseHttpClient (
     val endpoint: String,
     val httpClient: HttpClient
 ) {
-    suspend inline fun <reified T : BaseResult> get(
-        operation: String,
+    suspend inline fun <reified T : BaseResponse> get(
+        path: String,
         crossinline block: HttpRequestBuilder.() -> Unit = {}
     ): T {
-        val url = "${endpoint}${operation}"
+        val url = "${endpoint}${path}"
         return try {
             val response: HttpResponse = httpClient.get(url) {
                 block()
@@ -31,17 +33,37 @@ open class BaseHttpClient (
         }
     }
 
-    inline fun <reified T : BaseResult> httpErrorResult(exception: ResponseException) : T {
-        val result = T::class.java.newInstance() as BaseResult
+    suspend inline fun <reified T : BaseResponse> post(
+        path: String,
+        data: Any = { EmptyContent }
+    ): T {
+        val url = "${endpoint}${path}"
+        return try {
+            val response: HttpResponse = httpClient.post(url) {
+                contentType(ContentType.Application.Json)
+                body = data
+            }
+            response.receive()
+        }
+        catch (exception: ResponseException) {
+            httpErrorResult(exception)
+        }
+        catch (throwable: Throwable) {
+            exceptionResult(throwable)
+        }
+    }
+
+    inline fun <reified T : BaseResponse> httpErrorResult(exception: ResponseException) : T {
+        val result = T::class.java.newInstance() as BaseResponse
         val status = exception.response.status
         result.resultCode = ResultCode.HttpError
         result.message = "HttpStatus = ${status.value}. ${status.description}"
         return result as T
     }
 
-    inline fun <reified T : BaseResult> exceptionResult(throwable: Throwable) : T {
+    inline fun <reified T : BaseResponse> exceptionResult(throwable: Throwable) : T {
         throwable.printStackTrace()
-        val result = T::class.java.newInstance() as BaseResult
+        val result = T::class.java.newInstance() as BaseResponse
         result.resultCode = ResultCode.Exception
         result.message = throwable.message ?: "Internal error"
         return result as T

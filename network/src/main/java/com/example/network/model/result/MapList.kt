@@ -1,6 +1,6 @@
 package com.example.network.model.result
 
-import com.example.network.model.base.BaseResult
+import com.example.network.model.base.BaseResponse
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -12,9 +12,9 @@ data class MapListRequest(
 )
 
 @Serializable
-data class MapListResult (
+data class MapListResponse (
     val Items: List<MapItem> = emptyList()
-) : BaseResult()
+) : BaseResponse()
 
 @Serializable
 data class MapItem (
