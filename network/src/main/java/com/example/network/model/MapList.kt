@@ -1,6 +1,6 @@
-package com.example.network.model.result
+package com.example.network.model
 
-import com.example.network.model.base.BaseResponse
+import com.example.network.core.Response
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -14,7 +14,7 @@ data class MapListRequest(
 @Serializable
 data class MapListResponse (
     val Items: List<MapItem> = emptyList()
-) : BaseResponse()
+) : Response()
 
 @Serializable
 data class MapItem (

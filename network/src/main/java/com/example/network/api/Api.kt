@@ -1,8 +1,8 @@
 package com.example.network.api
 
-import com.example.network.model.result.HelloResult
-import com.example.network.model.result.MapListRequest
-import com.example.network.model.result.MapListResponse
+import com.example.network.model.HelloResult
+import com.example.network.model.MapListRequest
+import com.example.network.model.MapListResponse
 
 interface Api {
     suspend fun hello(username: String) : HelloResult

@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.network.api.Api
-import com.example.network.model.result.HelloResult
-import com.example.network.model.result.MapListRequest
+import com.example.network.model.HelloResult
+import com.example.network.model.MapListRequest
 import kotlinx.coroutines.*
 
 class MainViewModel(
@@ -33,12 +33,14 @@ class MainViewModel(
             }
 
             val work3 = async(Dispatchers.IO) {
-                api.mapList(MapListRequest(
+                api.mapList(
+                    MapListRequest(
                     clientVersion = 0,
                     language = 0,
                     terrainFormat = 1,
                     objectsFormat = 1
-                ))
+                    )
+                )
             }
 
             awaitAll(work1, work2, work3)

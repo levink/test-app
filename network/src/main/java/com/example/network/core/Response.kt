@@ -1,10 +1,10 @@
-package com.example.network.model.base
+package com.example.network.core
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-open class BaseResponse {
+open class Response {
     @SerialName("ResultCode")
     var resultCode: ResultCode = ResultCode.Ok
 
