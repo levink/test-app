@@ -32,6 +32,6 @@ class MainActivity : AppCompatActivity() {
             viewModel.askHello()
         }
 
-        //1
+        //2
     }
 }
