@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.network.model.HelloRequest
-import com.example.network.model.HelloResponse
 import com.example.network.model.MapItem
 import com.example.network.model.MapListRequest
 import kotlinx.coroutines.*
@@ -22,7 +20,7 @@ class MainViewModel (
     fun updateMaps() {
         viewModelScope.launch {
 
-            val work1 = async (Dispatchers.IO) {
+            withContext(Dispatchers.IO) {
                 repo.updateMapList(MapListRequest(
                     clientVersion = 0,
                     language = 0,
@@ -31,7 +29,7 @@ class MainViewModel (
                 ))
             }
 
-            val work2 = async(Dispatchers.Default) {
+            withContext(Dispatchers.Default) {
                 for(i in 0..101) {
                     delay(25)
                     progress.postValue(i)
