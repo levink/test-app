@@ -1,7 +1,8 @@
 package com.example.network.api
 
 import com.example.network.core.BaseHttpClient
-import com.example.network.model.HelloResult
+import com.example.network.model.HelloRequest
+import com.example.network.model.HelloResponse
 import com.example.network.model.MapListRequest
 import com.example.network.model.MapListResponse
 import io.ktor.client.*
@@ -13,9 +14,9 @@ class ApiClient (
     httpClient: HttpClient,
 ) : BaseHttpClient(endpoint, httpClient), Api {
 
-    override suspend fun hello(username: String): HelloResult {
+    override suspend fun hello(request: HelloRequest): HelloResponse {
         return get("Hello") {
-            parameter("username", username)
+            parameter("username", request.userName)
         }
     }
 

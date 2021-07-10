@@ -5,10 +5,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.network.core.HttpClientFactory
 import com.example.network.core.HttpClientViewModel
-import com.example.network.core.ResultCode
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,17 +19,14 @@ class MainActivity : AppCompatActivity() {
             binding.progressBar.progress = it
         })
 
-        viewModel.getResponse().observe(this, {
-            binding.textView.text = when (it.resultCode) {
-                ResultCode.Ok -> it.message
-                else -> "Error: ${it.message}"
-            }
+        viewModel.getMapList().observe(this, { maps ->
+            val sb = StringBuilder()
+            maps.forEach { sb.append(it.Name).append("\n") }
+            binding.textView.text = sb.toString()
         })
 
         if (savedInstanceState == null) {
-            viewModel.askHello()
+            viewModel.updateMaps()
         }
-
-        //3
     }
 }

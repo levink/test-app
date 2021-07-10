@@ -14,8 +14,9 @@ class MainViewModelFactory (
             val baseUrl = httpClientProvider.endpoint()
             val httpClient = httpClientProvider.client()
             val apiClient = ApiClient(baseUrl, httpClient)
+            val repo = MapsRepo(apiClient)
             @Suppress("UNCHECKED_CAST")
-            return MainViewModel(apiClient) as T
+            return MainViewModel(repo) as T
         }
         throw IllegalArgumentException("Bad ViewModel class")
     }

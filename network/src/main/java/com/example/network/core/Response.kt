@@ -11,3 +11,11 @@ open class Response {
     @SerialName("Message")
     var message: String? = null
 }
+
+fun Response.ok() : Boolean {
+    return when(resultCode) {
+        ResultCode.Ok -> true
+        ResultCode.DeprecatedClientWarning -> true
+        else -> false
+    }
+}
