@@ -1,4 +1,4 @@
-package com.example.network.core
+package com.example.network.http
 
 import io.ktor.client.*
 import io.ktor.client.call.*

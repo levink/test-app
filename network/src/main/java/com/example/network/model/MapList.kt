@@ -1,6 +1,6 @@
 package com.example.network.model
 
-import com.example.network.core.Response
+import com.example.network.http.Response
 import kotlinx.serialization.Serializable
 
 @Serializable

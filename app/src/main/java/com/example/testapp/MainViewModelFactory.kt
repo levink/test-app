@@ -3,7 +3,7 @@ package com.example.testapp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.network.api.ApiClient
-import com.example.network.core.HttpClientProvider
+import com.example.network.http.HttpClientProvider
 
 class MainViewModelFactory (
     private val httpClientProvider: HttpClientProvider

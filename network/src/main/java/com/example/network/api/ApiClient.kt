@@ -1,10 +1,8 @@
 package com.example.network.api
 
-import com.example.network.core.BaseHttpClient
-import com.example.network.model.HelloRequest
-import com.example.network.model.HelloResponse
-import com.example.network.model.MapListRequest
-import com.example.network.model.MapListResponse
+
+import com.example.network.http.BaseHttpClient
+import com.example.network.model.*
 import io.ktor.client.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.delay

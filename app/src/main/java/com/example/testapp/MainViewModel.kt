@@ -15,7 +15,7 @@ class MainViewModel (
 
     fun getProgress() : LiveData<Int> = progress
 
-    fun getMapList() : LiveData<List<MapItem>> = repo.mapList
+    fun mapList() : LiveData<List<MapItem>> = repo.mapList
 
     fun updateMaps() {
         viewModelScope.launch {

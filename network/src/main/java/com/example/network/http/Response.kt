@@ -1,4 +1,4 @@
-package com.example.network.core
+package com.example.network.http
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
