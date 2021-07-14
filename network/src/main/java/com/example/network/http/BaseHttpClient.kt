@@ -66,5 +66,4 @@ open class BaseHttpClient (
         result.message = throwable.message ?: "Internal error"
         return result as T
     }
-
 }
