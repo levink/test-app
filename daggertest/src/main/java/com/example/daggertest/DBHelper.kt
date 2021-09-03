@@ -1,10 +1,12 @@
 package com.example.daggertest
 
-class DBHelper {
-    fun getStudent(): Student {
+import javax.inject.Inject
+
+class DBHelper @Inject constructor() {
+    fun getStudent(id: Long): Student {
         return Student(
-            id = 100500,
-            name = "test name"
+            id = id,
+            name = "student with id=$id"
         )
     }
 }
